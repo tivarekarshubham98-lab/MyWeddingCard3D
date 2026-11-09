@@ -5,9 +5,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const curtain = document.getElementById("revealCurtain");
-  const replayBtn = document.getElementById("replayRevealBtn");
-  const photoUpload = document.getElementById("photoUpload");
-  const coupleBannerImg = document.getElementById("coupleBannerImg");
   const canvas = document.getElementById("goldParticles");
 
   // 1. Initial Royal Curtain Reveal Sequence
@@ -36,27 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("load", () => {
     playRevealAnimation();
   });
-
-  // Replay animation button
-  if (replayBtn) {
-    replayBtn.addEventListener("click", () => {
-      playRevealAnimation();
-    });
-  }
-
-  // 2. Photo Upload Live Preview (Allows user to test their own couple banner photo instantly)
-  if (photoUpload && coupleBannerImg) {
-    photoUpload.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          coupleBannerImg.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-  }
 
   // 3. Floating Gold Particle / Akshata Shimmer Animation
   if (canvas) {

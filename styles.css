@@ -272,6 +272,7 @@ html, body {
   justify-content: space-between;
   overflow: hidden;
   flex: 1 1 auto;
+  background: linear-gradient(180deg, #160005 0%, #1c0208 62%, #160005 100%);
 }
 
 /* Top Arch & Toran Header */
@@ -318,29 +319,34 @@ html, body {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* Media wrapper for couple photo */
+/* Media wrapper for couple photo — top portion only so photo stays clearly visible */
 .banner-media-wrapper {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 68%;
   z-index: 1;
   overflow: hidden;
+  background: #f2ead8;
 }
 
 .couple-banner-img {
   width: 100%;
-  height: 74%;
+  height: 100%;
   object-fit: cover;
-  object-position: center 22%;
-  transform: scale(1.05);
-  animation: photoKenBurns 18s ease-in-out infinite alternate;
-  filter: saturate(1.14) contrast(1.07) brightness(1.02);
+  /* portrait image: faces sit ~30-45% down so center on 38% */
+  object-position: center 38%;
+  transform: scale(1.02);
+  animation: photoKenBurns 16s ease-in-out infinite alternate;
+  filter: saturate(1.06) contrast(1.04);
   will-change: transform;
 }
 
 @keyframes photoKenBurns {
-  0% { transform: scale(1.03) translateY(0); }
-  50% { transform: scale(1.10) translateY(-10px); }
-  100% { transform: scale(1.05) translateY(-4px); }
+  0% { transform: scale(1.02) translateY(0); }
+  50% { transform: scale(1.08) translateY(-8px); }
+  100% { transform: scale(1.04) translateY(-3px); }
 }
 
 /* Floating Gold Particle Canvas */
@@ -349,97 +355,67 @@ html, body {
   inset: 0;
   z-index: 4;
   pointer-events: none;
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
 /* -------------------------------------------------------------
-   THE CORE REQUEST: BEST ANIMATED FADE COLOR FROM BOTTOM
-   Premium 4-Layer Cinematic Fade | Bottom-Up Organic Gradient
-   Photo -> Maroon -> Gold Dust -> Deep Velvet
+   NATURAL MATCHED FADE COLOR FROM BOTTOM
+   Blends seamlessly with banner.png natural shades into background
    ------------------------------------------------------------- */
 .bottom-animated-fade {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 72%;
+  height: 56%;
   z-index: 5;
   pointer-events: none;
   overflow: hidden;
 }
 
-/* Solid Base Maroon Transition - Main Fade */
+/* Smooth Image-to-Background Gradient Transition */
 .fade-gradient-core {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 120% 60% at 50% 100%, rgba(94, 6, 26, 0.55) 0%, transparent 60%),
-    linear-gradient(
-      to bottom,
-      rgba(22, 0, 5, 0) 0%,
-      rgba(22, 0, 5, 0.12) 18%,
-      rgba(37, 2, 10, 0.52) 38%,
-      rgba(40, 2, 11, 0.88) 62%,
-      rgba(22, 0, 5, 0.99) 84%,
-      #160005 100%
-    );
-  animation: coreFadeBreath 7s ease-in-out infinite alternate;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 12, 11, 0) 0%,
+    rgba(10, 12, 11, 0.12) 18%,
+    rgba(12, 14, 12, 0.45) 42%,
+    rgba(18, 12, 15, 0.80) 68%,
+    rgba(22, 6, 12, 0.95) 86%,
+    #160005 100%
+  );
+  animation: coreFadeBreath 6.5s ease-in-out infinite alternate;
 }
 
-/* Animated Golden Edge Line on Fade Top - Glowing Horizon */
-.fade-gradient-core::before {
-  content: "";
+/* Breathing Wave 1 (Soft image shade ambient wave) */
+.fade-wave.wave-1 {
   position: absolute;
-  top: 26%;
   left: -20%;
   right: -20%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(229,185,79,0.0) 20%, rgba(255,230,140,0.55) 50%, rgba(229,185,79,0.0) 80%, transparent);
-  filter: blur(0.5px);
-  opacity: 0.7;
-  animation: horizonGlow 5s ease-in-out infinite alternate;
+  top: 15%;
+  bottom: -15%;
+  background: radial-gradient(ellipse 90% 70% at 50% 75%, rgba(20, 24, 22, 0.45) 0%, transparent 70%);
+  animation: waveBreath1 7s ease-in-out infinite alternate;
+  filter: blur(20px);
 }
 
-/* Breathing Wave 1 (Rich Maroon Silk Flow - Bottom Up) */
-.fade-wave.wave-1 {
+/* Breathing Wave 2 (Subtle golden warmth aura) */
+.fade-wave.wave-2 {
   position: absolute;
   left: -30%;
   right: -30%;
-  top: 8%;
-  bottom: -25%;
-  background: radial-gradient(ellipse 90% 70% at 50% 70%, rgba(116, 8, 32, 0.62) 0%, rgba(58, 2, 15, 0.35) 48%, transparent 75%);
-  animation: waveBreath1 6.5s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
-  filter: blur(18px);
-  mix-blend-mode: screen;
-}
-
-/* Breathing Wave 2 (Warm Gold Amber Aura - Rising from Bottom) */
-.fade-wave.wave-2 {
-  position: absolute;
-  left: -40%;
-  right: -40%;
-  top: 28%;
-  bottom: -10%;
-  background: radial-gradient(circle at 50% 88%, rgba(212, 135, 20, 0.32) 0%, rgba(184, 134, 11, 0.18) 42%, transparent 70%);
-  animation: waveBreath2 8.5s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
-  filter: blur(26px);
-}
-
-/* Wave 3 - Ultra Subtle Shimmer Sweep from Bottom */
-.bottom-animated-fade::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
+  top: 30%;
   bottom: 0;
-  height: 100%;
-  background: linear-gradient(180deg, transparent 58%, rgba(255, 238, 170, 0.07) 78%, rgba(255, 238, 170, 0.02) 100%);
-  animation: bottomShimmer 4.2s ease-in-out infinite;
+  background: radial-gradient(circle at 50% 85%, rgba(212, 175, 55, 0.14) 0%, transparent 65%);
+  animation: waveBreath2 9s ease-in-out infinite alternate;
+  filter: blur(28px);
 }
 
 @keyframes coreFadeBreath {
-  0% { transform: translateY(4px) scaleY(0.985); }
-  100% { transform: translateY(-4px) scaleY(1.015); }
+  0% { opacity: 0.92; transform: translateY(2px); }
+  100% { opacity: 1; transform: translateY(-2px); }
 }
 
 @keyframes horizonGlow {
@@ -465,42 +441,7 @@ html, body {
   100% { transform: scale(1); opacity: 0.3; }
 }
 
-/* Banner Control Tools (Upload preview & Replay buttons) */
-.banner-tools {
-  position: absolute;
-  top: 68px;
-  right: 14px;
-  z-index: 25;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-end;
-}
 
-.photo-upload-pill, .replay-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  background: rgba(22, 0, 5, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--gold-border);
-  border-radius: 20px;
-  color: var(--gold-highlight);
-  font-size: 0.75rem;
-  font-family: var(--font-marathi-body);
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  transition: all 0.3s ease;
-}
-
-.photo-upload-pill:hover, .replay-pill:hover {
-  background: rgba(74, 4, 20, 0.9);
-  border-color: var(--gold-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.3);
-}
 
 /* =====================================================================
    3. MARATHI CALLIGRAPHY & TYPOGRAPHY SECTION
@@ -584,23 +525,48 @@ html, body {
   transform: translateZ(0);
 }
 
-/* Shimmer Sweep Animation on Names */
-.calligraphy-name::after {
-  content: "";
+/* One-time Flash Sweep over complete banner (left -> right, on load only, no looping) */
+.banner-flash-sweep {
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  transform: skewX(-25deg);
-  animation: shineSweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  inset: 0;
+  z-index: 30;
   pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
 }
 
-@keyframes shineSweep {
-  0% { left: -100%; }
-  35%, 100% { left: 160%; }
+.banner-flash-sweep::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -65%;
+  width: 42%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 244, 190, 0.10) 28%, rgba(255, 244, 190, 0.30) 50%, rgba(255, 244, 190, 0.10) 72%, transparent 100%);
+  transform: skewX(-14deg);
+  filter: blur(1px);
+}
+
+/* Only trigger once when banner is revealed; ends hidden, no loop */
+body.content-revealed .banner-flash-sweep {
+  opacity: 1;
+  animation: bannerFlashFade 1.8s ease-in-out 0.7s 1 forwards;
+}
+
+@keyframes bannerFlashFade {
+  0%   { opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+body.content-revealed .banner-flash-sweep::before {
+  animation: bannerBeamMove 1.8s ease-in-out 0.7s 1 forwards;
+}
+
+@keyframes bannerBeamMove {
+  0%   { transform: translateX(-45vw) skewX(-14deg); }
+  100% { transform: translateX(105vw) skewX(-14deg); }
 }
 
 /* Groom - Bride Connector Ribbon ("स्वयंवर") */
@@ -712,30 +678,7 @@ html, body {
   60% { transform: translateY(3px) rotate(45deg); }
 }
 
-/* Ornate Corner Accents */
-.corner-ornament {
-  position: absolute;
-  width: 38px;
-  height: 38px;
-  pointer-events: none;
-  z-index: 12;
-  border-color: var(--gold-rich);
-  opacity: 0.65;
-}
 
-.corner-bl {
-  bottom: 8px;
-  left: 8px;
-  border-bottom: 2px solid var(--gold-rich);
-  border-left: 2px solid var(--gold-rich);
-}
-
-.corner-br {
-  bottom: 8px;
-  right: 8px;
-  border-bottom: 2px solid var(--gold-rich);
-  border-right: 2px solid var(--gold-rich);
-}
 
 /* =====================================================================
    4. STAGGERED REVEAL ANIMATIONS (When Curtain opens)
