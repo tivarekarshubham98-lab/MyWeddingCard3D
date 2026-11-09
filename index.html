@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>॥ शुभविवाह सोहळा ॥ - Royal Marathi Wedding Invitation</title>
+  <!-- Google Fonts for Marathi Calligraphy & Royal Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=gotu&family=Kalam:wght@400;700&family=Rozha+One&family=Tiro+Devanagari+Marathi:ital@0;1&family=Yatra+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="is-loading">
+
+  <!-- Desktop Ambient Background Info -->
+  <div class="desktop-ambient-bg" aria-hidden="true">
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+  </div>
+
+  <!-- Mobile Viewport Container (Looks like mobile screen even on Web/Desktop) -->
+  <main class="mobile-frame" id="weddingCard">
+
+    <!-- 1. INITIAL ROYAL REVEAL OVERLAY (Curtain + Ganpati Vandana Reveal on Load) -->
+    <div class="reveal-curtain" id="revealCurtain">
+      <div class="curtain-panel curtain-left"></div>
+      <div class="curtain-panel curtain-right"></div>
+      <div class="curtain-center-emblem">
+        <div class="mandala-ring"></div>
+        <div class="ganesh-symbol">
+          <!-- Ornate Shree Ganesh / Swastik Motif -->
+          <svg viewBox="0 0 120 120" class="emblem-svg">
+            <defs>
+              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF2B2" />
+                <stop offset="35%" stop-color="#D4AF37" />
+                <stop offset="70%" stop-color="#AA7C11" />
+                <stop offset="100%" stop-color="#F7E27C" />
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="54" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="4 3" />
+            <circle cx="60" cy="60" r="46" fill="none" stroke="url(#goldGrad)" stroke-width="1" />
+            <!-- Auspicious Kalash / Swastik Calligraphy Emblem -->
+            <text x="60" y="72" text-anchor="middle" fill="url(#goldGrad)" font-family="'Yatra One', serif" font-size="38">श्री</text>
+          </svg>
+        </div>
+        <p class="curtain-mantra">॥ श्री गणेशाय नमः ॥</p>
+        <span class="curtain-sub">स्नेहपूर्वक आग्रहाचे निमंत्रण</span>
+      </div>
+    </div>
+
+    <!-- 2. HERO BANNER SECTION (Couple Photo + Animated Bottom Fade + Marathi Calligraphy) -->
+    <section class="hero-banner" id="heroBanner">
+
+      <!-- Top Traditional Royal Arch & Toran Ornament -->
+      <div class="top-arch-ornament">
+        <svg viewBox="0 0 430 70" preserveAspectRatio="none" class="arch-svg">
+          <defs>
+            <linearGradient id="archGold" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#9A6F1A" />
+              <stop offset="50%" stop-color="#FFE484" />
+              <stop offset="100%" stop-color="#9A6F1A" />
+            </linearGradient>
+          </defs>
+          <path d="M0,0 L430,0 L430,38 Q322,12 215,48 Q108,12 0,38 Z" fill="rgba(45, 4, 14, 0.85)" />
+          <path d="M0,38 Q108,12 215,48 Q322,12 430,38" fill="none" stroke="url(#archGold)" stroke-width="2" />
+        </svg>
+        <div class="shree-header reveal-item" data-delay="1">
+          <span class="ornament-wing">༺</span>
+          <span class="shree-text">॥ श्री गणेशाय नमः ॥</span>
+          <span class="ornament-wing">༻</span>
+        </div>
+      </div>
+
+      <!-- Couple Banner Image Wrapper with Ken Burns Zoom & Reveal Mask -->
+      <div class="banner-media-wrapper">
+        <!-- Replaceable Photo (`assets/couple-banner.jpg` or via preview button) -->
+        <img
+          id="coupleBannerImg"
+          src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=85"
+          alt="Couple Wedding Banner"
+          class="couple-banner-img"
+        />
+        <!-- Subtle Golden Vignette & Shimmer Canvas -->
+        <canvas id="goldParticles" class="particles-canvas"></canvas>
+
+        <!-- ANIMATED FADE COLOR FROM BOTTOM (Multi-layer breathing royal gradient) -->
+        <div class="bottom-animated-fade">
+          <div class="fade-wave wave-1"></div>
+          <div class="fade-wave wave-2"></div>
+          <div class="fade-gradient-core"></div>
+        </div>
+      </div>
+
+      <!-- Quick Photo Preview Switcher (So you can test your own photo anytime) -->
+      <div class="banner-tools reveal-item" data-delay="6">
+        <label for="photoUpload" class="photo-upload-pill" title="तुमचा फोटो टाकून पहा">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          <span>तुमचा फोटो टाकून पहा</span>
+          <input type="file" id="photoUpload" accept="image/*" hidden />
+        </label>
+        <button type="button" id="replayRevealBtn" class="replay-pill" title="Reveal Animation पुन्हा पहा">
+          ↻ अ‍ॅनिमेशन पहा
+        </button>
+      </div>
+
+      <!-- 3. MARATHI CALLIGRAPHY OVERLAY (Bottom of Banner) -->
+      <div class="hero-calligraphy-content">
+
+        <!-- Auspicious Tagline Badge -->
+        <div class="shubh-vivah-badge reveal-item" data-delay="2">
+          <svg class="flourish-left" width="44" height="16" viewBox="0 0 44 16">
+            <path d="M42,8 C30,8 24,2 14,2 C6,2 2,6 2,8 C2,10 6,14 14,14 C24,14 30,8 42,8 Z" fill="none" stroke="url(#goldGrad)" stroke-width="1.2"/>
+          </svg>
+          <span class="badge-calligraphy">॥ शुभविवाह सोहळा ॥</span>
+          <svg class="flourish-right" width="44" height="16" viewBox="0 0 44 16">
+            <path d="M2,8 C14,8 20,2 30,2 C38,2 42,6 42,8 C42,10 38,14 30,14 C20,14 14,8 2,8 Z" fill="none" stroke="url(#goldGrad)" stroke-width="1.2"/>
+          </svg>
+        </div>
+
+        <!-- Master Marathi Calligraphy Couple Names -->
+        <div class="couple-calligraphy-box reveal-item" data-delay="3">
+          <div class="name-line groom-line">
+            <span class="prefix-tag">चि.</span>
+            <h1 class="calligraphy-name" data-text="शुभम">शुभम</h1>
+          </div>
+
+          <div class="wed-connector">
+            <span class="connector-line"></span>
+            <span class="connector-heart">स्वयंवर</span>
+            <span class="connector-line"></span>
+          </div>
+
+          <div class="name-line bride-line">
+            <span class="prefix-tag">चि. सौ. कां.</span>
+            <h1 class="calligraphy-name" data-text="प्रिया">प्रिया</h1>
+          </div>
+        </div>
+
+        <!-- Poetic Marathi Calligraphic Quote -->
+        <p class="marathi-poetic-line reveal-item" data-delay="4">
+          “रेशीमगाठींनी जोडले गेले दोन जीव, दोन मने...<br/>
+          आशीर्वादाने तुमच्या फुलू दे आमचे सहजीवन नवे!”
+        </p>
+
+        <!-- Auspicious Muhurat Highlight Pill -->
+        <div class="muhurat-ribbon reveal-item" data-delay="5">
+          <div class="ribbon-inner">
+            <span class="ribbon-icon">❈</span>
+            <span class="ribbon-date">मार्गशीर्ष शुद्ध द्वितीया • शुभ मुहूर्त</span>
+            <span class="ribbon-icon">❈</span>
+          </div>
+        </div>
+
+        <!-- Scroll Cue for Upcoming Sections -->
+        <div class="scroll-down-indicator reveal-item" data-delay="6">
+          <span class="scroll-text">खाली स्क्रोल करा</span>
+          <div class="scroll-chevron"></div>
+        </div>
+      </div>
+
+      <!-- Royal Ornate Corner Borders -->
+      <div class="corner-ornament corner-bl"></div>
+      <div class="corner-ornament corner-br"></div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
