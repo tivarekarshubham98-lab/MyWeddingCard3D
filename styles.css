@@ -319,16 +319,12 @@ html, body {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* Media wrapper for couple photo — top portion only so photo stays clearly visible */
+/* Media wrapper for couple photo — covers full banner with seamless bottom fade */
 .banner-media-wrapper {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 68%;
+  inset: 0;
   z-index: 1;
   overflow: hidden;
-  background: #f2ead8;
 }
 
 .couple-banner-img {
@@ -418,17 +414,6 @@ html, body {
   100% { opacity: 1; transform: translateY(-2px); }
 }
 
-@keyframes horizonGlow {
-  0% { opacity: 0.35; transform: translateX(-3%) scaleX(0.96); }
-  50% { opacity: 0.85; transform: translateX(0) scaleX(1); }
-  100% { opacity: 0.45; transform: translateX(3%) scaleX(0.97); }
-}
-
-@keyframes bottomShimmer {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
-}
-
 @keyframes waveBreath1 {
   0% { transform: translateY(12px) scaleY(0.92); opacity: 0.65; }
   50% { transform: translateY(-8px) scaleY(1.08); opacity: 0.95; }
@@ -481,14 +466,25 @@ html, body {
   font-weight: 700;
 }
 
-/* COUPLE CALLIGRAPHY NAMES BOX */
+/* COUPLE CALLIGRAPHY BANNER IMAGE (firstbnr.png) */
 .couple-calligraphy-box {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  margin-bottom: 12px;
+  justify-content: center;
+  margin-bottom: 55px;
+  padding: 0 4px;
+}
+
+.firstbnr-img {
+  width: 100%;
+  max-width: 390px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .name-line {
@@ -525,49 +521,7 @@ html, body {
   transform: translateZ(0);
 }
 
-/* One-time Flash Sweep over complete banner (left -> right, on load only, no looping) */
-.banner-flash-sweep {
-  position: absolute;
-  inset: 0;
-  z-index: 30;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0;
-}
 
-.banner-flash-sweep::before {
-  content: "";
-  position: absolute;
-  top: -20%;
-  bottom: -20%;
-  left: -65%;
-  width: 42%;
-  background: linear-gradient(100deg, transparent 0%, rgba(255, 244, 190, 0.10) 28%, rgba(255, 244, 190, 0.30) 50%, rgba(255, 244, 190, 0.10) 72%, transparent 100%);
-  transform: skewX(-14deg);
-  filter: blur(1px);
-}
-
-/* Only trigger once when banner is revealed; ends hidden, no loop */
-body.content-revealed .banner-flash-sweep {
-  opacity: 1;
-  animation: bannerFlashFade 1.8s ease-in-out 0.7s 1 forwards;
-}
-
-@keyframes bannerFlashFade {
-  0%   { opacity: 0; }
-  12%  { opacity: 1; }
-  88%  { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-body.content-revealed .banner-flash-sweep::before {
-  animation: bannerBeamMove 1.8s ease-in-out 0.7s 1 forwards;
-}
-
-@keyframes bannerBeamMove {
-  0%   { transform: translateX(-45vw) skewX(-14deg); }
-  100% { transform: translateX(105vw) skewX(-14deg); }
-}
 
 /* Groom - Bride Connector Ribbon ("स्वयंवर") */
 .wed-connector {
